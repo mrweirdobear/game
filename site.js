@@ -35,33 +35,33 @@ function updateFrame(){
         currentFrame = "stand";
     }
 
-    if(counter == 6){
+    // if(counter == 6){
         moveCharacter();
         //do something
-        counter = 0;
-    }
-    else{
-        counter++;
-    }
+    //     counter = 0;
+    // }
+    // else{
+    //     counter++;
+    // }
 }
 
 function moveCharacter(){
     //check if moving right
-    if(movingRight)
-    {
-        leftPosition = leftPosition + 25;
+    // if(movingRight)
+    // {
+        leftPosition = leftPosition + 1;
         hero.style.left = leftPosition + "px";
-    }
-    else if (movingLeft){
+    // }
+    // else if (movingLeft){
         //check if moving left
-        leftPosition = leftPosition - 25;
-        hero.style.left = leftPosition + "px";
-    } else if (movingUp)
-    {
-        //check if moving up 
-        leftPosition = leftPosition - 25;
-        hero.style.top = leftPosition + "px";
-    }
+        // leftPosition = leftPosition - 25;
+        // hero.style.left = leftPosition + "px";
+    // } else if (movingUp)
+    // {
+    //     //check if moving up 
+    //     leftPosition = leftPosition - 25;
+    //     hero.style.top = leftPosition + "px";
+    // }
 }
 
 
