@@ -6,11 +6,14 @@ let me explain what is happening here.
 
 */
 
-
+//we need to get our hero container
+var heroContainer = document.getElementById('hero-container');
 //we need get our hero div
-var hero = document.getElementById('hero');
+var heroes = document.getElementsByClassName('hero');
 //create variable to hold frame number/name
 var currentFrame = "stand";
+var counter = 0;
+
 function updateFrame(){
     if(currentFrame == "stand"){ //change frame from stand to step
         //update background-position
@@ -31,5 +34,52 @@ function updateFrame(){
     }
 }
 
+function updateMultipleFrames(){
+    if(currentFrame == "stand"){ //change frame from stand to step
+        //update background-position
+        for(var i = 0; i < heroes.length; i++)
+        {
+            var hero = heroes[i];
+            hero.style.backgroundPositionX = '-115px';
+            hero.style.backgroundPositionY = '355px'; 
+        }
+
+        // hero.style.backgroundPositionX = '-115px';
+        // hero.style.backgroundPositionY = '355px'; 
+        //if using different images, use hero.style.backgroundImage = "sprint2.png";
+
+        //update currentFrame to new frame name
+        currentFrame = "step";
+    }
+    else{ //else currentFrame == "step"
+        //update background-position
+        for(var i = 0; i < heroes.length; i++)
+        {
+            var hero = heroes[i];
+            hero.style.backgroundPositionX = '-115px';
+            hero.style.backgroundPositionY = '325px';
+        }
+
+        //update currentFrame to new frame name
+        currentFrame = "stand";
+    }
+
+    if(counter == 6)
+    {
+        growBody();
+        counter = 0;
+    }
+    else{
+        counter++;
+        // counter = counter + 1;
+    }
+}
+
 /* for a game */
-setInterval(updateFrame, 170);
+setInterval(updateMultipleFrames, 170);
+
+function growBody(){
+    var newHero = document.createElement("div");
+    newHero.className = "hero";
+    heroContainer.appendChild(newHero);
+}
