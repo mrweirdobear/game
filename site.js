@@ -5,7 +5,7 @@ hey, im sorry i write crappy code.
 let me explain what is happening here.
 
 */
-
+document.getElementsByTagName('body')[0].style.overflow = 'hidden';
 //we need to get our hero container
 var heroContainer = document.getElementById('hero-container');
 //we need get our hero div
@@ -14,7 +14,6 @@ var hero = document.getElementById('hero');
 //create variable to hold frame number/name
 var currentFrame = "stand";
 var counter = 0;
-var leftPosition = 0;
 
 function updateFrame(){
     if(currentFrame == "stand"){ //change frame from stand to step
@@ -45,23 +44,33 @@ function updateFrame(){
     // }
 }
 
+var leftKey = 37;
+var rightKey = 39;
+var upKey = 38;
+var downKey = 40;
+var leftPosition = 0;
+var topPosition = 0;
 function moveCharacter(){
     //check if moving right
-    // if(movingRight)
-    // {
-        leftPosition = leftPosition + 1;
+    if(recordedKey == leftKey) {
+        leftPosition = leftPosition - 5;
         hero.style.left = leftPosition + "px";
-    // }
-    // else if (movingLeft){
-        //check if moving left
-        // leftPosition = leftPosition - 25;
-        // hero.style.left = leftPosition + "px";
-    // } else if (movingUp)
-    // {
-    //     //check if moving up 
-    //     leftPosition = leftPosition - 25;
-    //     hero.style.top = leftPosition + "px";
-    // }
+    }
+    else if(recordedKey == rightKey) {
+        leftPosition = leftPosition + 5;
+        hero.style.left = leftPosition + "px";
+    }
+    else if(recordedKey == downKey)//down
+    {
+        topPosition = topPosition + 5;
+        hero.style.top = topPosition + "px";
+    }
+    else if(recordedKey == upKey)//up
+    {
+        topPosition = topPosition - 5;
+        hero.style.top = topPosition + "px";
+    }
+    recordedKey = null;
 }
 
 
@@ -106,11 +115,16 @@ function updateMultipleFrames(){
     }
 }
 
-/* for a game */
-setInterval(updateFrame, 170);
-
 function growBody(){
     var newHero = document.createElement("div");
     newHero.className = "hero";
     heroContainer.appendChild(newHero);
 }
+
+var recordedKey = null;
+document.addEventListener('keydown', function(event) {
+    recordedKey = event.keyCode;
+});
+
+/* for a game */
+setInterval(updateFrame, 170);// ~1/6 of a second
